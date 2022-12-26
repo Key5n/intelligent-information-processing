@@ -5,17 +5,17 @@ import java.util.*;
 // 30m
 public class MisCanProblem {
   public static void main(String[] args) {
-    // System.out.println("DLS solver depth: 10");
-    // var dlsSolver1 = new DLSSolver();
-    // dlsSolver1.solve(new MisCanWorld(), 10);
+    System.out.println("DLS solver depth: 10");
+    var dlsSolver1 = new DLSSolver();
+    dlsSolver1.solve(new MisCanWorld(), 10);
 
-    // System.out.println("DLS solver depth: 30");
-    // var dlsSolver2 = new DLSSolver();
-    // dlsSolver2.solve(new MisCanWorld(), 30);
+    System.out.println("DLS solver depth: 30");
+    var dlsSolver2 = new DLSSolver();
+    dlsSolver2.solve(new MisCanWorld(), 30);
 
-    // System.out.println("IDS solver");
-    // var idsSolver = new IDSSolver();
-    // idsSolver.solve(new MisCanWorld());
+    System.out.println("IDS solver");
+    var idsSolver = new IDSSolver();
+    idsSolver.solve(new MisCanWorld());
 
     System.out.println("CLS solver");
     var clsSolver = new CLSSolver();

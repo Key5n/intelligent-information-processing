@@ -18,6 +18,9 @@ interface World extends Cloneable {
   int hashCode();
 }
 
+/*
+ * コンパイルの都合上Stateクラスを他の探索方法のstateと区別する
+ */
 class CLSState {
   /* 親ノード */
   CLSState parent;

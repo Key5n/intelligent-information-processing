@@ -3,6 +3,9 @@ package ex1e;
 
 import java.util.*;
 
+/*
+ * コンパイルの都合上Stateクラスを他の探索方法のstateと区別する
+ */
 class DLSState {
   // 親ノード
   DLSState parent;
