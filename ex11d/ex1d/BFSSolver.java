@@ -45,9 +45,9 @@ class State {
 public class BFSSolver {
   World world;
   /* 訪れたノードの数 */
-  int numOfVisitedNodes = 0;
+  long visited = 0;
   /* オープンリストの最大長 */
-  int maxLengthOfOpenList = 0;
+  long maxLen = 0;
 
   /* 解くメソッド */
   public void solve(World world) {
@@ -59,7 +59,8 @@ public class BFSSolver {
     long finishTime = System.currentTimeMillis();
     if (goal != null)
       printSolution(goal);
-    System.out.printf("Time passed: %5d\n", finishTime - startTime);
+    System.out.printf("visited: %d, max length: %d\n", this.visited, this.maxLen);
+    System.out.printf("Time passed: %d\n", finishTime - startTime);
   }
 
   /* 次探索すべきノードを探してゲットするメソッド */
@@ -74,6 +75,7 @@ public class BFSSolver {
       }
       var children = children(state);
       openList = concat(openList, children);
+      this.maxLen = Math.max(this.maxLen, openList.size());
     }
     return null;
   }
@@ -90,7 +92,7 @@ public class BFSSolver {
    * listから先頭のノードを獲得するメソッド
    */
   State get(List<State> list) {
-    numOfVisitedNodes++;
+    this.visited++;
     return list.remove(0);
   }
 
@@ -120,7 +122,6 @@ public class BFSSolver {
     List<State> list = new ArrayList<>();
     list.addAll(frontList);
     list.addAll(backList);
-    this.maxLengthOfOpenList = maxLengthOfOpenList < list.size() ? list.size() : this.maxLengthOfOpenList;
     return list;
   }
 
@@ -135,8 +136,6 @@ public class BFSSolver {
       goal = goal.parent;
     }
     System.out.println("start");
-    System.out.printf("Visited Nodes: %d\n", numOfVisitedNodes);
-    System.out.printf("The maximum length of the open list: %d\n", maxLengthOfOpenList);
 
   }
 

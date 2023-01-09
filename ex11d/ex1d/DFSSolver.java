@@ -3,25 +3,7 @@ package ex1d;
 
 import java.util.*;
 
-public class DFSSolver {
-  World world;
-  /* 訪れたノードの数 */
-  int numOfVisitedNodes = 0;
-  /* オープンリストの最大長 */
-  int maxLengthOfOpenList = 0;
-
-  /* 解くメソッド */
-  public void solve(World world) {
-    long startTime = System.currentTimeMillis();
-    this.world = world;
-    var root = new State(this.world);
-    var goal = search(root);
-    long finishTime = System.currentTimeMillis();
-    if (goal != null)
-      printSolution(goal);
-    System.out.printf("Time passed: %5d\n", finishTime - startTime);
-  }
-
+public class DFSSolver extends BFSSolver {
   /* 次探索すべきノードを探してゲットするメソッド */
   State search(State root) {
     List<State> openList = new ArrayList<>();
@@ -33,69 +15,11 @@ public class DFSSolver {
         return state;
       }
       var children = children(state);
+      // 縦型探索
+      // 展開した子ノードの優先度を高くする(スタックの役割)
       openList = concat(children, openList);
     }
     return null;
   }
 
-  /*
-   * 引数のstateがゴールか判定するメソッド
-   * worldインタフェースのゴール判定を用いる
-   */
-  boolean isGoal(State state) {
-    return state.world.isGoal();
-  }
-
-  /*
-   * listから先頭のノードを獲得するメソッド
-   */
-  State get(List<State> list) {
-    numOfVisitedNodes++;
-    return list.remove(0);
-  }
-
-  /**
-   * 子ノードを生成する
-   * 
-   * @param state
-   * @return children 子ノードのリスト
-   */
-  List<State> children(State state) {
-    List<State> children = new ArrayList<>();
-    for (var action : state.world.actions()) {
-      var next = state.world.perform(action);
-      if (next != null) {
-        var child = new State(state, next);
-        children.add(child);
-      }
-    }
-    return children;
-  }
-
-  /*
-   * リストを結合する
-   * 第1引数が前, 第2引数が後ろに結合される
-   */
-  List<State> concat(List<State> frontList, List<State> backList) {
-    List<State> list = new ArrayList<>();
-    list.addAll(frontList);
-    list.addAll(backList);
-    this.maxLengthOfOpenList = maxLengthOfOpenList < list.size() ? list.size() : this.maxLengthOfOpenList;
-    return list;
-  }
-
-  /*
-   * 解を出力する
-   * 右から左に状態が出力される
-   */
-  void printSolution(State goal) {
-    System.out.println("DFS Solver");
-    while (goal != null) {
-      System.out.print(goal + " <- ");
-      goal = goal.parent;
-    }
-    System.out.println("start");
-    System.out.printf("Visited Nodes: %d\n", numOfVisitedNodes);
-    System.out.printf("The maximum length of the open list: %d\n", maxLengthOfOpenList);
-  }
 }
