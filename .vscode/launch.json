@@ -1,0 +1,98 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch Maze",
+      "request": "launch",
+      "mainClass": "ex1a.Maze",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MazeProblem",
+      "request": "launch",
+      "mainClass": "ex1b.MazeProblem",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MisCanProblem",
+      "request": "launch",
+      "mainClass": "ex1c.MisCanProblem",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MisCanProblem(1)",
+      "request": "launch",
+      "mainClass": "ex1d.MisCanProblem",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MisCanProblem(2)",
+      "request": "launch",
+      "mainClass": "ex1e.MisCanProblem",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "ex2a.Main",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main(1)",
+      "request": "launch",
+      "mainClass": "ex2c.Main",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main(2)",
+      "request": "launch",
+      "mainClass": "ex2d.Main",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch AlphaBetaSearch",
+      "request": "launch",
+      "mainClass": "ex3a.AlphaBetaSearch",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MinMaxSearch",
+      "request": "launch",
+      "mainClass": "ex3a.MinMaxSearch",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch Game",
+      "request": "launch",
+      "mainClass": "ex3b.Game",
+      "projectName": "intelligent-information-processing_998ea33b"
+    },
+    {
+      "type": "java",
+      "name": "Launch MinMaxSearch(1)",
+      "request": "launch",
+      "mainClass": "ex3b.MinMaxSearch",
+      "projectName": "intelligent-information-processing_998ea33b"
+    }
+  ]
+}

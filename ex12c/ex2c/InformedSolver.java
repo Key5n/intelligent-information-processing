@@ -67,9 +67,13 @@ public class InformedSolver {
   public void solve(World world) {
     this.world = world;
     State root = new State(null, this.world);
+    long startTime = System.currentTimeMillis();
     State goal = search(root);
-    if (goal != null)
+    long finishTime = System.currentTimeMillis();
+    if (goal != null) {
       printSolution(goal);
+      System.out.printf("Time passed: %d\n", finishTime - startTime);
+    }
     System.out.printf("visited: %d, max length: %d\n", this.visited, this.maxLen);
   }
 

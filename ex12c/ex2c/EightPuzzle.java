@@ -6,6 +6,7 @@ class EightPuzzleAction implements Action {
   /* タイルの並び順 */
   String actionKind;
 
+  // ０を上、右、下、と入れ替える
   static List<Action> allActions = List.of(
       new EightPuzzleAction("UP"),
       new EightPuzzleAction("RIGHT"),
@@ -15,22 +16,30 @@ class EightPuzzleAction implements Action {
   public void swap(int[] order, int positionOfZero) {
     int t;
     switch (actionKind) {
+      // 上と入れ替える
+      // 上はのインデックスは-3
       case "UP":
         t = order[positionOfZero];
         order[positionOfZero] = order[positionOfZero - 3];
         order[positionOfZero - 3] = t;
         break;
       case "RIGHT":
+        // 右と入れ替える
+        // 右のインデックスは+1
         t = order[positionOfZero];
         order[positionOfZero] = order[positionOfZero + 1];
         order[positionOfZero + 1] = t;
         break;
       case "DOWN":
+        // 下と入れ替える
+        // 下のインデックスは+3
         t = order[positionOfZero];
         order[positionOfZero] = order[positionOfZero + 3];
         order[positionOfZero + 3] = t;
         break;
       case "LEFT":
+        // 左と入れ替える
+        // 左のインデックスは-1
         t = order[positionOfZero];
         order[positionOfZero] = order[positionOfZero - 1];
         order[positionOfZero - 1] = t;
@@ -44,6 +53,7 @@ class EightPuzzleAction implements Action {
     this.actionKind = actionKind;
   }
 
+  // 入れ替えコストは入れ替えた数の1
   public float cost() {
     return 1;
   }
@@ -63,6 +73,8 @@ class EightPuzzleWorld implements World {
         order[5], order[6], order[7], order[8]);
   };
 
+  // 評価関数
+  // 今回はパネルと目標状態と異なるパネルの枚数
   public float h() {
     int count = 0;
     for (int i = 0; i < 8; i++) {
@@ -76,6 +88,7 @@ class EightPuzzleWorld implements World {
     return 9 - count;
   }
 
+  // パネルがすべて同じかどうか
   public boolean isGoal() {
     for (int i = 0; i < 8; i++) {
       if (order[i] != i + 1) {
@@ -85,6 +98,7 @@ class EightPuzzleWorld implements World {
     if (order[8] != 0) {
       return false;
     }
+
     return true;
   }
 
@@ -92,6 +106,7 @@ class EightPuzzleWorld implements World {
     return EightPuzzleAction.allActions;
   }
 
+  // actionをもとに処理する
   public World perform(Action action) {
     if (!(action instanceof EightPuzzleAction)) {
       return null;
@@ -99,31 +114,39 @@ class EightPuzzleWorld implements World {
     var a = (EightPuzzleAction) action;
     var newWorld = new EightPuzzleWorld(order.clone());
 
+    // 0の位置のインデックスを取得
     int indexOfZero = whereIsZero();
+    // 0の位置に大してそのアクションは行えるかどうか
+    // 例えば0, 1, 2の位置にある0に対して上と入れ替えはできない
     if (!isValid(a.actionKind, indexOfZero)) {
       return null;
     }
+    // aのインスタンスフィールドactionKindを元にindexOfZeroの位置と入れ替える
     a.swap(newWorld.order, indexOfZero);
     return newWorld;
   }
 
   public boolean isValid(String kind, int indexOfZero) {
     switch (kind) {
+      // 0, 1, 2の場合上と入れ替えはできない
       case "UP":
         if (indexOfZero >= 0 && indexOfZero <= 2) {
           return false;
         }
         break;
+      // 2, 5, 8の場合右と入れ替えはできない
       case "RIGHT":
         if (indexOfZero % 3 == 2) {
           return false;
         }
         break;
+      // 6, 7, 8の場合下と入れ替えはできない
       case "DOWN":
         if (indexOfZero >= 6 && indexOfZero <= 8) {
           return false;
         }
         break;
+      // 0, 3, 6の場合左と入れ替えはできない
       case "LEFT":
         if (indexOfZero % 3 == 0) {
           return false;
@@ -135,6 +158,7 @@ class EightPuzzleWorld implements World {
     return true;
   }
 
+  // 0のインデックスを調べる
   private int whereIsZero() {
     int indexOfZero = 0;
     for (int i = 0; i < 9; i++) {

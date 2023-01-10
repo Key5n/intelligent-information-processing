@@ -5,19 +5,19 @@ import java.util.*;
 // 30m
 public class MisCanProblem {
   public static void main(String[] args) {
-    System.out.println("DLS solver depth: 10");
+    System.out.println("DLS Solver, depth: 10");
     var dlsSolver1 = new DLSSolver();
     dlsSolver1.solve(new MisCanWorld(), 10);
 
-    System.out.println("DLS solver depth: 30");
+    System.out.println("\nDLS Solver, depth: 30");
     var dlsSolver2 = new DLSSolver();
     dlsSolver2.solve(new MisCanWorld(), 30);
 
-    System.out.println("IDS solver");
+    System.out.println("\nIDS Solver");
     var idsSolver = new IDSSolver();
     idsSolver.solve(new MisCanWorld());
 
-    System.out.println("CLS solver");
+    System.out.println("\nCLS Solver");
     var clsSolver = new CLSSolver();
     clsSolver.solve(new MisCanWorld());
   }
@@ -109,5 +109,15 @@ class MisCanWorld implements World {
   // 状態にユニークな値を与える
   public int hashCode() {
     return missionary * 100 + cannival * 10 + boat;
+  }
+
+  public int depth(State state) {
+    int res = 0;
+    State s = state;
+    while (s.parent != null) {
+      s = s.parent;
+      res++;
+    }
+    return res;
   }
 }

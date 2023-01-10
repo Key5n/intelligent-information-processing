@@ -75,7 +75,7 @@ class EightPuzzleWorld implements World {
         order[5], order[6], order[7], order[8]);
   };
 
-  // 評価関数
+  // 評価関数h1
   // パネルと目標状態と異なるパネルの枚数
   // public float h() {
   // int count = 0;
@@ -90,32 +90,8 @@ class EightPuzzleWorld implements World {
   // return 9 - count;
   // }
 
-  // 評価関数
+  // 評価関数h2
   // マンハッタン距離
-  // public float h() {
-  // int res = 0;
-  // 現在のx座標, y座標, 目標の位置のx座標, y座標
-  // int x_current, y_current, x_target, y_target;
-  // int manhattan = 0;
-  // for (int i = 0; i < 9; i++) {
-  // x_current = i % 3;
-  // y_current = i / 3;
-  // if (order[i] == 0) {
-  // x_target = 2;
-  // y_target = 2;
-  // } else {
-  // x_target = (order[i] - 1) % 3;
-  // y_target = (order[i] - 1) / 3;
-  // }
-  // manhattan = Math.abs((x_target - x_current)) + Math.abs((y_target -
-  // y_current));
-  // res += manhattan;
-  // }
-  // return res;
-  // }
-
-  // 評価関数
-  // マンハッタン距離の二乗和
   public float h() {
     int res = 0;
     // 現在のx座標, y座標, 目標の位置のx座標, y座標
@@ -133,10 +109,34 @@ class EightPuzzleWorld implements World {
       }
       manhattan = Math.abs((x_target - x_current)) + Math.abs((y_target -
           y_current));
-      res += manhattan * manhattan;
+      res += manhattan;
     }
     return res;
   }
+
+  // 評価関数h3
+  // マンハッタン距離の二乗和
+  // public float h() {
+  // int res = 0;
+  // 現在のx座標, y座標, 目標の位置のx座標, y座標
+  // int x_current, y_current, x_target, y_target;
+  // int manhattan = 0;
+  // for (int i = 0; i < 9; i++) {
+  // x_current = i % 3;
+  // y_current = i / 3;
+  // if (order[i] == 0) {
+  // x_target = 2;
+  // y_target = 2;
+  // } else {
+  // x_target = (order[i] - 1) % 3;
+  // y_target = (order[i] - 1) / 3;
+  // }
+  // manhattan = Math.abs((x_target - x_current)) + Math.abs((y_target -
+  // y_current));
+  // res += manhattan * manhattan;
+  // }
+  // return res;
+  // }
 
   // パネルがすべて同じかどうか
   public boolean isGoal() {
@@ -220,8 +220,12 @@ class EightPuzzleWorld implements World {
     return indexOfZero;
   }
 
-  public boolean equals(EightPuzzleWorld world) {
-    return Arrays.equals(this.order, world.order);
+  public boolean equals(World world) {
+    if (world instanceof EightPuzzleWorld) {
+
+      return Arrays.equals(this.order, ((EightPuzzleWorld) world).order);
+    }
+    return false;
   }
 
 }

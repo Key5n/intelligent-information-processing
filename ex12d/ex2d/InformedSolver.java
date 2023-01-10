@@ -18,7 +18,7 @@ interface World extends Cloneable {
    */
   float h();
 
-  // boolean world
+  public boolean equals(World w);
 }
 
 class State {
@@ -43,6 +43,10 @@ class State {
   /* 評価値を返す */
   float h() {
     return this.world.h();
+  }
+
+  public boolean equals(State s) {
+    return this.world.equals(s.world);
   }
 }
 
@@ -83,7 +87,7 @@ public class InformedSolver {
   /* 解を探すメソッド */
   State search(State root) {
     List<State> openList = new ArrayList<>();
-    List<State> deleteList = new ArrayList<>();
+    List<State> deleteNodeList = new ArrayList<>();
     openList.add(root);
 
     while (openList.size() > 0) {
@@ -94,13 +98,29 @@ public class InformedSolver {
       if (isGoal(state))
         return state;
       var children = children(state);
-      for (State s : children) {
-        if (closedList.contains(s) || openList.contains(s)) {
-          deleteList.add(s);
+      for (State childState : children) {
+        for (State closedListState : closedList) {
+          /*
+           * その状態がクローズドリストの中にある場合
+           * 消去するノードの中にそのノードをpushする
+           */
+          if (childState.equals(closedListState)) {
+            deleteNodeList.add(childState);
+          }
+        }
+
+        for (State openListState : openList) {
+          /*
+           * その状態がオープンリストの中にある場合
+           * 消去するノードの中にそのノードをpushする
+           */
+          if (childState.equals(openListState)) {
+            deleteNodeList.add(childState);
+          }
         }
       }
-      for (State s : deleteList) {
-        children.remove(s);
+      for (State deleteNode : deleteNodeList) {
+        children.remove(deleteNode);
       }
       /* 横型探索 */
       openList = concat(openList, children);
