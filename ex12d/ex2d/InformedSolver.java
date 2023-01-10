@@ -17,6 +17,8 @@ interface World extends Cloneable {
    * ゴールまでの評価を返す
    */
   float h();
+
+  // boolean world
 }
 
 class State {
@@ -52,6 +54,7 @@ interface Evaluator {
 public class InformedSolver {
   Evaluator eval;
   World world;
+  List<State> closedList = new ArrayList<>();
 
   /* 訪れたノード数 */
   long visited = 0;
@@ -67,24 +70,38 @@ public class InformedSolver {
   public void solve(World world) {
     this.world = world;
     State root = new State(null, this.world);
+    long startTime = System.currentTimeMillis();
     State goal = search(root);
-    if (goal != null)
+    long finishTime = System.currentTimeMillis();
+    if (goal != null) {
       printSolution(goal);
+      System.out.printf("Time passed: %d\n", finishTime - startTime);
+    }
     System.out.printf("visited: %d, max length: %d\n", this.visited, this.maxLen);
   }
 
   /* 解を探すメソッド */
   State search(State root) {
     List<State> openList = new ArrayList<>();
+    List<State> deleteList = new ArrayList<>();
     openList.add(root);
 
     while (openList.size() > 0) {
       var state = get(openList);
       /* 訪問ノード数 + 1 */
       this.visited += 1;
+      closedList.add(state);
       if (isGoal(state))
         return state;
       var children = children(state);
+      for (State s : children) {
+        if (closedList.contains(s) || openList.contains(s)) {
+          deleteList.add(s);
+        }
+      }
+      for (State s : deleteList) {
+        children.remove(s);
+      }
       /* 横型探索 */
       openList = concat(openList, children);
       /* 評価関数を元にソート */
