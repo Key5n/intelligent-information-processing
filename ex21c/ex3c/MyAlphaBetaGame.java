@@ -2,15 +2,15 @@ package ex3c;
 
 import ex3b.*;
 
-public class MyAlphaBetaPlayerGame extends Game {
-  int numOfCutting = 0;
-  int visited = 0;
+public class MyAlphaBetaGame extends Game {
+  public int numOfCutting = 0;
+  public int visited = 0;
 
   public static void main(String[] args) {
     var p0 = new MyAlphaBetaPlayer(new Eval(), 20);
     var p1 = new RandomPlayer();
     // p0が黒(先手)でp1が白(後手)
-    MyAlphaBetaPlayerGame g = new MyAlphaBetaPlayerGame(p0, p1);
+    MyAlphaBetaGame g = new MyAlphaBetaGame(p0, p1);
     p0.game = g;
     long startTime = System.currentTimeMillis();
     // 対戦
@@ -21,7 +21,7 @@ public class MyAlphaBetaPlayerGame extends Game {
     System.out.printf("Time passed: %.3f(s)\n", (float) (finishTime - startTime) / 1_000);
   }
 
-  public MyAlphaBetaPlayerGame(Player black, Player white) {
+  public MyAlphaBetaGame(Player black, Player white) {
     super(black, white);
   }
 
@@ -29,7 +29,7 @@ public class MyAlphaBetaPlayerGame extends Game {
   @Override
   public void printResult() {
     System.out.println("winner: " + this.players.get(this.state.winner()));
-    System.out.printf("Cuts happened: %d\n", numOfCutting);
-    System.out.printf("Visited: %d\n", visited);
+    // System.out.printf("Cuts happened: %d\n", numOfCutting);
+    // System.out.printf("Visited: %d\n", visited);
   }
 }

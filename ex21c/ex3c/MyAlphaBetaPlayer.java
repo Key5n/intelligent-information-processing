@@ -5,7 +5,7 @@ import static java.lang.Float.*;
 import ex3b.*;
 
 public class MyAlphaBetaPlayer extends MinMaxPlayer {
-  MyAlphaBetaPlayerGame game;
+  public MyAlphaBetaGame game;
 
   public MyAlphaBetaPlayer(Eval eval, int deapthLimit) {
     super(eval, deapthLimit);
