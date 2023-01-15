@@ -1,43 +1,11 @@
-package ex3a;
+package ex3b;
 
-import java.util.*;
-
-class State {
-  static Map<String, List<String>> childrenLists = Map.of(
-      "A", List.of("B", "C"),
-      "B", List.of("D", "E"),
-      "C", List.of("F", "G"));
-  static Map<String, Float> values = Map.of(
-      "D", 3.0f,
-      "E", 2.0f,
-      "F", 1.0f,
-      "G", 4.0f);
-
-  String current;
-
-  State(String current) {
-    this.current = current;
-  }
-
-  public String toString() {
-    return this.current.toString();
-  }
-
-  boolean isGoal() {
-    return getMoves().isEmpty();
-  }
-
-  List<String> getMoves() {
-    return State.childrenLists.getOrDefault(this.current, new ArrayList<>());
-  }
-
-  State perform(String move) {
-    return new State(move);
-  }
-}
-
-class Eval {
-  float value(State state) {
-    return State.values.getOrDefault(state.current, Float.NaN);
+public class Eval {
+  // その状態の評価値を返す
+  // 今回は自分の勝利なら最大値
+  // 相手の勝利なら最小値
+  // その他なら石の数を返す
+  public float value(State state) {
+    return state.isGoal() ? Integer.MAX_VALUE * state.winner() : state.stones;
   }
 }

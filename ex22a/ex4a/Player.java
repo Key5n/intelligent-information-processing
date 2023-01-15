@@ -1,20 +1,22 @@
-package ex3b;
+package ex4a;
+
+import static ex4a.State.*;
 
 public class Player {
   String name;
-  public int color;
+  int color;
 
   public Player(String name) {
     this.name = name;
   }
 
   public String toString() {
-    // 黒手番か白手番を表示する
-    return this.name + (this.color > 0 ? "(black)" : "(white)");
+    return this.name;
   }
 
-  //
   public Move think(State state) {
+    if (this.color == WHITE)
+      state = state.flipped();
     Move move = search(state);
     move.color = this.color;
     return move;
