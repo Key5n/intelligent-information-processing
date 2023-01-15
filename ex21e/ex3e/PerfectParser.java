@@ -11,7 +11,7 @@ public class PerfectParser extends MyNegaMaxGame {
   }
 
   public static void main(String[] args) {
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 6; i <= 6; i++) {
       var p0 = new MyNegaMaxPlayer(new Eval(), 20);
       var p1 = new MyNegaMaxPlayer(new Eval(), 20);
       // p0が黒(先手)でp1が白(後手)
