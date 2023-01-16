@@ -13,7 +13,7 @@ public class Player {
     return this.name + (this.color > 0 ? "(black)" : "(white)");
   }
 
-  //
+  // 行動をとる
   public Move think(State state) {
     Move move = search(state);
     move.color = this.color;

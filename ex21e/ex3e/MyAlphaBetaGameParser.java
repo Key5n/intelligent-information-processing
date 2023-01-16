@@ -7,7 +7,7 @@ public class MyAlphaBetaGameParser extends Game {
   // public int visited = 0;
 
   public static void main(String[] args) {
-    for (int i = 6; i <= 6; i++) {
+    for (int i = 6; i <= 10; i++) {
 
       var p0 = new MyAlphaBetaPlayer(new Eval(), 20);
       var p1 = new MyAlphaBetaPlayer(new Eval(), 20);

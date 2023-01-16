@@ -8,7 +8,6 @@ CLASS	= $(SRC:.java=.class)
 PROGRAM	= $(shell pwd)
 MAIN	= ex3d/MyNegaMaxGame
 
-all: $(CLASS)
 
 test: $(CLASS)
 	$(JAVA) -classpath .:../ex21b:../ex21c $(MAIN)

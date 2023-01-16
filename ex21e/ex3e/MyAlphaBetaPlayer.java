@@ -33,7 +33,7 @@ public class MyAlphaBetaPlayer extends MinMaxPlayer {
       // game.visited++;
       float v0 = minSearch(next, alpha, beta, depth + 1);
       v = Math.max(v, v0);
-      if (beta <= v0) {
+      if (beta < v0) {
         // game.numOfCutting++;
         // System.out.println("Beta cut happened since evaluated value " + v0 + " larger
         // than " + beta + " is found.");
@@ -61,7 +61,7 @@ public class MyAlphaBetaPlayer extends MinMaxPlayer {
       v = Math.min(v, v0);
       if (depth == 0 && v == v0)
         this.move = move;
-      if (alpha >= v0) {
+      if (alpha > v0) {
         // game.numOfCutting++;
         // System.out.println("Alpha cut happened since evaluated value " + v0 + " less
         // than " + beta + " is found.");
