@@ -21,7 +21,7 @@ public class MyNegaMaxGame extends MyAlphaBetaGame {
   }
 
   public MyNegaMaxGame(Player black, Player white) {
-    super(black, white);
+    super(black, white, 5);
   }
 
 }

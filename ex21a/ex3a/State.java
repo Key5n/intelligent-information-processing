@@ -4,16 +4,33 @@ import java.util.*;
 
 class State {
   // 親ノードから子ノードへの対応付け
+  // static Map<String, List<String>> childrenLists = Map.of(
+  // "A", List.of("B", "C"),
+  // "B", List.of("D", "E"),
+  // "C", List.of("F", "G"));
+  // 子ノードの評価
+  // static Map<String, Float> values = Map.of(
+  // "D", 3.0f,
+  // "E", 2.0f,
+  // "F", 1.0f,
+  // "G", 4.0f);
+
+  // 親ノードから子ノードへの対応付け
   static Map<String, List<String>> childrenLists = Map.of(
-      "A", List.of("B", "C"),
-      "B", List.of("D", "E"),
-      "C", List.of("F", "G"));
+      "A", List.of("B", "C", "D"),
+      "B", List.of("E", "F", "G"),
+      "C", List.of("H", "I", "J"),
+      "D", List.of("K", "L"));
   // 子ノードの評価
   static Map<String, Float> values = Map.of(
-      "D", 3.0f,
-      "E", 2.0f,
-      "F", 1.0f,
-      "G", 4.0f);
+      "E", -1.0f,
+      "F", -31.0f,
+      "G", -16.0f,
+      "H", -38.0f,
+      "I", -23.0f,
+      "J", -50.0f,
+      "K", -9.0f,
+      "L", 6.0f);
 
   String current;
 

@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Game {
   public static void main(String[] args) {
-    var p0 = new MinMaxPlayer(new Eval(), 20);
-    var p1 = new RandomPlayer();
+    var p1 = new MinMaxPlayer(new Eval(), 20);
+    var p0 = new RandomPlayer();
     // p0が黒(先手)でp1が白(後手)
     Game g = new Game(p0, p1);
     // 対戦

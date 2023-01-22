@@ -7,7 +7,6 @@ SRC	= $(wildcard ex3a/*.java)
 CLASS	= $(SRC:.java=.class)
 PROGRAM	= $(shell pwd)
 
-all: $(CLASS)
 
 test: $(CLASS)
 	$(JAVA) ex3a/MinMaxSearch

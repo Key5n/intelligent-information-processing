@@ -13,7 +13,11 @@ public class MyAlphaBetaPlayer extends MinMaxPlayer {
 
   @Override
   protected Move search(State state) {
-    maxSearch(state, NEGATIVE_INFINITY, POSITIVE_INFINITY, 0);
+    if (this.color == State.WHITE) {
+      minSearch(state, NEGATIVE_INFINITY, POSITIVE_INFINITY, 0);
+    } else {
+      maxSearch(state, NEGATIVE_INFINITY, POSITIVE_INFINITY, 0);
+    }
     return this.move;
   }
 
@@ -31,7 +35,8 @@ public class MyAlphaBetaPlayer extends MinMaxPlayer {
       v = Math.max(v, v0);
       if (beta <= v0) {
         game.numOfCutting++;
-        System.out.println("Beta cut happened since evaluated value " + v0 + " larger than " + beta + " is found.");
+        // System.out.println("Beta cut happened since evaluated value " + v0 + " larger
+        // than " + beta + " is found.");
         break;
       }
       alpha = Math.max(alpha, v0);
@@ -58,7 +63,8 @@ public class MyAlphaBetaPlayer extends MinMaxPlayer {
         this.move = move;
       if (alpha >= v0) {
         game.numOfCutting++;
-        System.out.println("Alpha cut happened since evaluated value " + v0 + " less than " + beta + " is found.");
+        // System.out.println("Alpha cut happened since evaluated value " + v0 + " less
+        // than " + beta + " is found.");
         break;
       }
       beta = Math.min(beta, v0);

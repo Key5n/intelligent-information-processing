@@ -6,7 +6,7 @@ JAVA	= java
 SRC	= $(wildcard ex3c/*.java) $(wildcard ../ex21b/ex3b/*.java)
 CLASS	= $(SRC:.java=.class)
 PROGRAM	= $(shell pwd)
-MAIN	= ex3d/perfectParser
+MAIN	= ex3c/MyAlphaBetaGame
 
 
 test: $(CLASS)

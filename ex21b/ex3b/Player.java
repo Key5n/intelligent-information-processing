@@ -1,7 +1,7 @@
 package ex3b;
 
 public class Player {
-  String name;
+  public String name;
   public int color;
 
   public Player(String name) {

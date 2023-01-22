@@ -19,7 +19,11 @@ public class MinMaxPlayer extends Player {
 
   // stateをルートにしたmin-max search
   protected Move search(State state) {
-    maxSearch(state, 0);
+    if (this.color == State.WHITE) {
+      minSearch(state, 0);
+    } else {
+      maxSearch(state, 0);
+    }
     return this.move;
   }
 
