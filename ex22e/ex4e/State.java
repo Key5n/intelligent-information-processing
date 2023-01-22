@@ -1,4 +1,6 @@
-package ex4a;
+package ex4e;
+
+import ex4a.*;
 
 import java.util.*;
 
@@ -164,5 +166,11 @@ public class State implements Cloneable {
     flipped.lastMove = this.lastMove.flipped();
     flipped.count();
     return flipped;
+  }
+
+  // public boolean
+
+  public int hashCode() {
+
   }
 }

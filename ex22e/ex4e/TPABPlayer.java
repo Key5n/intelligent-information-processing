@@ -1,14 +1,16 @@
-package ex4a;
+package ex4e;
+
+import ex4a.*;
 
 import static java.lang.Float.*;
 import java.util.*;
 
-public class AlphaBetaPlayer extends Player {
+public class TPABPlayer extends Player {
   Eval eval;
   int depthLimit;
   Move move;
 
-  public AlphaBetaPlayer(Eval eval, int depthLimit) {
+  public TPABPlayer(Eval eval, int depthLimit) {
     super("AlphaBeta" + depthLimit);
     this.eval = eval;
     this.depthLimit = depthLimit;

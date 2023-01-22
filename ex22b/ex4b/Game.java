@@ -1,12 +1,13 @@
-package ex4a;
+package ex4b;
 
+import ex4a.*;
 import static ex4a.State.*;
 import java.util.*;
 
 public class Game {
   public static void main(String[] args) {
     var p0 = new RandomPlayer();
-    var p1 = new MinMaxPlayer(new Eval(), 2);
+    var p1 = new HumanPlayer(new Eval());
     // p0(黒)が先手、p1(白)が後手
     var g = new Game(p0, p1);
     // 対戦
