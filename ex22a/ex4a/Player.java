@@ -25,7 +25,7 @@ public class Player {
     return move;
   }
 
-  Move search(State state) {
+  protected Move search(State state) {
     return null;
   }
 }

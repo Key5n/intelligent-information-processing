@@ -20,7 +20,7 @@ public class State implements Cloneable {
   // b2: 相手の2個のコマの並び数
   // a3: 自分の3個のコマの並び数
   // b3: 相手の3個のコマの並び数
-  int a1, a2, a3, b1, b2, b3;
+  public int a1, a2, a3, b1, b2, b3;
 
   // インスタンスのコピー
   public State clone() {

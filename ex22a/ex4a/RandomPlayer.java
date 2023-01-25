@@ -5,7 +5,7 @@ public class RandomPlayer extends Player {
     super("Random");
   }
 
-  Move search(State state) {
+  protected Move search(State state) {
     var moves = state.getMoves();
     int index = new java.util.Random().nextInt(moves.size());
     return moves.get(index);

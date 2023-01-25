@@ -4,9 +4,9 @@ import static java.lang.Float.*;
 import java.util.*;
 
 public class AlphaBetaPlayer extends Player {
-  Eval eval;
-  int depthLimit;
-  Move move;
+  protected Eval eval;
+  protected int depthLimit;
+  protected Move move;
 
   public AlphaBetaPlayer(Eval eval, int depthLimit) {
     super("AlphaBeta" + depthLimit);
@@ -19,7 +19,7 @@ public class AlphaBetaPlayer extends Player {
     return this.move;
   }
 
-  float maxSearch(State state, float alpha, float beta, int depth) {
+  protected float maxSearch(State state, float alpha, float beta, int depth) {
     if (isTerminal(state, depth))
       return this.eval.value(state);
 
@@ -61,7 +61,7 @@ public class AlphaBetaPlayer extends Player {
     return v;
   }
 
-  boolean isTerminal(State state, int depth) {
+  protected boolean isTerminal(State state, int depth) {
     return state.isGoal() || depth >= this.depthLimit;
   }
 }
