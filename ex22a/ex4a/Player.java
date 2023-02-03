@@ -3,7 +3,7 @@ package ex4a;
 import static ex4a.State.*;
 
 public class Player {
-  String name;
+  protected String name;
   public int color;
 
   public Player(String name) {

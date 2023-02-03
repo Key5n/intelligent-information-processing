@@ -62,9 +62,6 @@ public class MinMaxPlayer extends Player {
     /*
      * 1. getMovesした後にソート
      * 2. getMoves内でソート
-     * そうするとどちらにも「どうやって評価値を求めるの？」という
-     * 疑問がある
-     * じゃあ
      */
     float v = POSITIVE_INFINITY;
 

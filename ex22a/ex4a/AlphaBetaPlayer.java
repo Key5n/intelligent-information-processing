@@ -14,11 +14,13 @@ public class AlphaBetaPlayer extends Player {
     this.depthLimit = depthLimit;
   }
 
+  // 最適解の探索
   protected Move search(State state) {
     maxSearch(state, NEGATIVE_INFINITY, POSITIVE_INFINITY, 0);
     return this.move;
   }
 
+  // 最適解の探索
   protected float maxSearch(State state, float alpha, float beta, int depth) {
     if (isTerminal(state, depth))
       return this.eval.value(state);
@@ -61,6 +63,7 @@ public class AlphaBetaPlayer extends Player {
     return v;
   }
 
+  // 葉ノードもしくは深さ制限にひっかかったなら
   protected boolean isTerminal(State state, int depth) {
     return state.isGoal() || depth >= this.depthLimit;
   }

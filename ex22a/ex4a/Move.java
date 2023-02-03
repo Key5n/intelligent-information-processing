@@ -20,7 +20,7 @@ public class Move {
     return new Move(this.index, -this.color);
   }
 
-  //
+  // インデックスを文字化
   public static String indexToString(int index) {
     return colToString(index % SIZE) + rowToString(index / SIZE);
   }
@@ -30,6 +30,7 @@ public class Move {
     return Character.toString('a' + col);
   }
 
+  // 行を文字列に
   public static String rowToString(int row) {
     return Character.toString('1' + row);
   }
