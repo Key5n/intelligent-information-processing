@@ -78,15 +78,6 @@ public class State implements Cloneable {
       if (this.board[i] == NONE)
         moves.add(new Move(i, this.color));
     }
-    Collections.sort(moves, (move1, move2) -> {
-      State s1 = this.perform(move1);
-      State s2 = this.perform(move2);
-      Eval eval = new Eval();
-      float value1 = eval.value(s1);
-      float value2 = eval.value(s2);
-      return (int) (value2 - value1);
-    });
-
     return moves;
   }
 

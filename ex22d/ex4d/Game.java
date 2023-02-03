@@ -1,13 +1,12 @@
 package ex4d;
 
-import ex4a.*;
 import static ex4a.State.*;
 import java.util.*;
 
 public class Game {
   public static void main(String[] args) {
-    var p0 = new RandomPlayer();
-    var p1 = new HumanPlayer(new Eval());
+    var p0 = new MOABPlayer(new Eval(), 6);
+    var p1 = new MOABPlayer(new Eval(), 6);
     // p0(黒)が先手、p1(白)が後手
     var g = new Game(p0, p1);
     // 対戦
@@ -18,6 +17,7 @@ public class Game {
 
   State state;
   Map<Integer, Player> players = new HashMap<>();
+  static int visited = 0;
 
   public Game(Player black, Player white) {
     this.state = new State();
@@ -46,5 +46,6 @@ public class Game {
   void printResult() {
     System.out.println(this.state);
     System.out.println("winner: " + this.players.get(this.state.winner()));
+    System.out.printf("visited: %d\n", visited);
   }
 }
