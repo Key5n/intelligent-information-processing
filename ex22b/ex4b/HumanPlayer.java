@@ -22,21 +22,21 @@ public class HumanPlayer extends Player {
      */
     System.out.printf("Enter a number from 0 to 8: ");
     Scanner stdIn = new Scanner(System.in);
-    // if (state.board[index] != 0) {
-    // throw new Error("Invalid Input Error");
-    // }
     int index;
     while (true) {
       index = stdIn.nextInt();
-      if (state.board[index] == 0) {
-        break;
+      if (index < 0 || index > 8) {
+        System.out.println("Enter a number from 0 to 8: ");
+        continue;
       }
-      System.out.println("There is already a piece, so enter another one: ");
+      if (state.board[index] != 0) {
+        System.out.println("There is already a piece, so enter another one: ");
+        continue;
+      }
+      break;
     }
     Move move = new Move(index, this.color);
-
     return move;
-
   }
 
 }
