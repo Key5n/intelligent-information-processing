@@ -28,6 +28,16 @@ public class MOABPlayer extends Player {
       return this.eval.value(state);
 
     List<Move> moves = state.getMoves();
+
+    Collections.sort(moves, (move1, move2) -> {
+      State s1 = state.perform(move1);
+      State s2 = state.perform(move2);
+      Eval eval = new Eval();
+      float value1 = eval.value(s1);
+      float value2 = eval.value(s2);
+      return (int) (value1 - value2);
+    });
+
     float v = NEGATIVE_INFINITY;
 
     for (Move move : moves) {
@@ -51,6 +61,14 @@ public class MOABPlayer extends Player {
 
     List<Move> moves = state.getMoves();
     float v = POSITIVE_INFINITY;
+    Collections.sort(moves, (move1, move2) -> {
+      State s1 = state.perform(move1);
+      State s2 = state.perform(move2);
+      Eval eval = new Eval();
+      float value1 = eval.value(s1);
+      float value2 = eval.value(s2);
+      return (int) (value1 - value2);
+    });
 
     for (Move move : moves) {
       State next = state.perform(move);
