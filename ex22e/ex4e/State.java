@@ -172,7 +172,6 @@ public class State implements Cloneable {
   }
 
   public int hashCode() {
-    List<Integer> a = new LinkedList<>();
     int min = Arrays.hashCode(this.board);
     CoodinateTransformer[] TransformerArrays = {
         // x軸対称移動
@@ -205,7 +204,6 @@ public class State implements Cloneable {
 
     };
     for (CoodinateTransformer t : TransformerArrays) {
-      a.add(hashCode(this.board, t));
       min = Math.min(min, hashCode(this.board, t));
     }
     // 最小値を返す
