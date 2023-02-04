@@ -3,10 +3,10 @@
 JAVAC	= javac
 JAVA	= java
 
-SRC	= $(wildcard ../ex4b/*.java) $(wildcard ../ex22a/ex4a/*.java) $(wildcard ex4d/*.java)
+SRC	= $(wildcard ../ex4b/*.java) $(wildcard ../ex22a/ex4a/*.java) $(wildcard ex4e/*.java)
 CLASS	= $(SRC:.java=.class)
 PROGRAM	= $(shell pwd)
-MAIN	= ex4c/Game
+MAIN	= ex4e/Game
 
 
 test: $(CLASS)
