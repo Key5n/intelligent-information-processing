@@ -1,13 +1,15 @@
 package ex4e;
 
-import ex4a.*;
 import static ex4a.State.*;
 import java.util.*;
 
 public class Game {
+
+  public static int count = 0;
+
   public static void main(String[] args) {
-    var p0 = new TPABPlayer(new Eval(), 10);
-    var p1 = new TPABPlayer(new Eval(), 10);
+    var p0 = new TPABPlayer(new Eval(), 2);
+    var p1 = new TPABPlayer(new Eval(), 2);
     // p0(黒)が先手、p1(白)が後手
     var g = new Game(p0, p1);
     // 対戦
@@ -46,5 +48,6 @@ public class Game {
   void printResult() {
     System.out.println(this.state);
     System.out.println("winner: " + this.players.get(this.state.winner()));
+    System.out.println("count: " + count);
   }
 }
